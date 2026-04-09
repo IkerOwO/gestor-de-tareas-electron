@@ -14,6 +14,41 @@ document.addEventListener('DOMContentLoaded', () => {
         window.windowAPI.close();
     });
 
+    // SISTEMA DE NOTIFICACIONES (TOASTS)
+    const toastContainer = document.querySelector('#toast-container');
+
+    const showToast = (title, message, duration = 5000) => {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `
+            <i class="fa fa-info-circle"></i>
+            <div class="toast-content">
+                <div class="toast-title">${title}</div>
+                <div class="toast-message">${message}</div>
+            </div>
+        `;
+        toastContainer.appendChild(toast);
+
+        // Eliminar con animación
+        setTimeout(() => {
+            toast.classList.add('fade-out');
+            setTimeout(() => toast.remove(), 500);
+        }, duration);
+    };
+
+    // Recordatorio periódico de tareas
+    setInterval(async () => {
+        try {
+            const notes = await window.dbAPI.getNotes();
+            const count = notes ? notes.length : 0;
+            if (count > 0) {
+                showToast('Recordatorio de Tareas', `Tienes ${count} ${count === 1 ? 'tarea pendiente' : 'tareas pendientes'} por completar.`);
+            }
+        } catch (error) {
+            console.error('Error in periodic reminder:', error);
+        }
+    }, 3600000); // 1 Hora
+
     // App Navigation and DB Buttons
     const btnNew = document.querySelector('#btn-new');
     const btnSee = document.querySelector('#btn-see');
@@ -35,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const notes = await window.dbAPI.getNotes();
             const count = notes ? notes.length : 0;
-            noteStats.innerHTML = `<p>Tienes un total de <b>${count}</b> ${count === 1 ? 'nota guardada' : 'notas guardadas'}</p>`;
+            noteStats.innerHTML = `<p>Tienes un total de <b>${count}</b> ${count === 1 ? 'tarea guardada' : 'tareas guardadas'}</p>`;
         } catch (error) {
             console.error('Error updating stats:', error);
             noteStats.innerHTML = '<p>Error al cargar estadísticas</p>';
@@ -65,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         welcomeScreen.style.display = 'none';
         crearNotasDiv.style.display = 'none';
         verNotasDiv.style.display = 'flex';
-        verNotasDiv.innerHTML = '<h2 style="text-align: center;">Ver Notas</h2>';
+        verNotasDiv.innerHTML = '<h2 style="text-align: center;">Ver Tareas</h2>';
         
         // Mostramos las notas sacadas de la BBDD
         try {
@@ -81,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                 });
             } else {
-                verNotasDiv.innerHTML += '<p style="text-align: center; color: #94a3b8;">No hay notas guardadas.</p>';
+                verNotasDiv.innerHTML += '<p style="text-align: center; color: #94a3b8;">No hay tareas guardadas.</p>';
             }
         } catch (error) {
             console.error('Error fetching notes:', error);

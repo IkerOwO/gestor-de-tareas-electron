@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./styles/Style.css">
-    <title>Notas</title>
+    <title>Tareas</title>
 </head>
+
 <body>
     <div class="main">
         <!-- Top bar | Botones de ventana -->
         <div class="topbar">
             <div class="app-logo" id="app-logo">
-                <i class="fa fa-sticky-note"></i> <span>Mis Notas</span>
+                <i class="fa fa-sticky-note"></i> <span>Mis Tareas</span>
             </div>
             <div class="buttons">
                 <button id="btn-new"><i class="fa fa-pencil-square-o"></i> Crear</button>
@@ -32,8 +34,8 @@
                 <h1>Bienvenido a tus Notas</h1>
                 <p>Organiza tus ideas, tareas y proyectos de forma rápida y sencilla.</p>
                 <div class="quick-actions">
-                    <button id="welcome-new"><i class="fa fa-plus"></i> Crear Primera Nota</button>
-                    <button id="welcome-see"><i class="fa fa-eye"></i> Ver mis Notas</button>
+                    <button id="welcome-new"><i class="fa fa-plus"></i> Crear Primera Tarea</button>
+                    <button id="welcome-see"><i class="fa fa-eye"></i> Ver mis Tareas</button>
                 </div>
                 <div class="stats" id="note-stats">
                     <p>Cargando estadísticas...</p>
@@ -43,18 +45,21 @@
 
         <!-- Crear notas -->
         <div class="crearNotas" style="display: none;">
-            <h2 style="text-align: center;">Crear Nota Nueva</h2>
+            <h2 style="text-align: center;">Crear Tarea Nueva</h2>
             <div class="inputs">
                 <input type="text" id="titulo" placeholder="Título">
                 <textarea id="contenido" placeholder="Contenido"></textarea>
             </div>
-            <button id="btn-crear"><i class="fa fa-check"></i> Guardar Nota</button>
+            <button id="btn-crear"><i class="fa fa-check"></i> Guardar Tarea</button>
         </div>
 
         <!-- Contenedor de notas -->
         <div class="container" style="display: none;">
         </div>
     </div>
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
 </body>
 <script src="./scripts/index.js"></script>
+
 </html>

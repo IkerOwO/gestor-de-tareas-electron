@@ -1,8 +1,9 @@
+const { app } = require('electron');
 const initSqlJs = require('sql.js');
 const fs = require('fs');
 const path = require('path');
 
-const dbPath = path.join(__dirname, '..', 'notas.sqlite');
+const dbPath = path.join(app.getPath('userData'), 'notas.sqlite');
 let db;
 
 async function initDB() {
