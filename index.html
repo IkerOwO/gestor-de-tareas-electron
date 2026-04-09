@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./styles/Style.css">
+    <title>Notas</title>
+</head>
+<body>
+    <div class="main">
+        <!-- Top bar | Botones de ventana -->
+        <div class="topbar">
+            <div class="buttons">
+                <button id="btn-new"><i class="fa fa-pencil-square-o"></i> Crear</button>
+                <button id="btn-see"><i class="fa fa-list"></i> Ver</button>
+            </div>
+            <div class="window-buttons">
+                <button id="btn-min"><i class="fa fa-window-minimize"></i></button>
+                <button id="btn-max"><i class="fa fa-window-maximize"></i></button>
+                <button id="btn-close"><i class="fa fa-window-close"></i></button>
+            </div>
+        </div>
+
+        <!-- Crear notas -->
+        <div class="crearNotas" style="display: none;">
+            <h2 style="text-align: center;">Crear Nota Nueva</h2>
+            <div class="inputs">
+                <input type="text" id="titulo" placeholder="Título">
+                <textarea id="contenido" placeholder="Contenido"></textarea>
+            </div>
+            <button id="btn-crear"><i class="fa fa-check"></i> Guardar Nota</button>
+        </div>
+
+        <!-- Contenedor de notas -->
+        <div class="container" style="display: none;">
+            <h2 style="text-align: center;">Ver Notas</h2>  
+        </div>
+    </div>
+</body>
+<script src="./scripts/index.js"></script>
+</html>
