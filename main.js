@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 
 const path = require('node:path')
-
+const { initDB, getNotes, addNote, deleteNote } = require('./Db/database')
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 1200,
@@ -17,7 +17,13 @@ const createWindow = () => {
   win.loadFile('index.html')
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  await initDB();
+  
+  ipcMain.handle('get-notes', () => getNotes());
+  ipcMain.on('add-note', (event, titulo, contenido) => addNote(titulo, contenido));
+  ipcMain.on('delete-note', (event, id) => deleteNote(id));
+
   createWindow()
 })
 
